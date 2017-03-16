@@ -12,7 +12,14 @@ const ArticleList = React.createClass({
     return (
       <div id='ArticleList'>
         {this.props.articles.map(function (article, i) {
-          return <ArticleCard title={article.title} votes={article.votes} key={i}/>
+          return <ArticleCard 
+          title={article.title} 
+          votes={article.votes} 
+          key={i} 
+          comments={article.comments} 
+          topic={article.belongs_to}
+          author={article.created_by}
+          />
         })}
       </div>
     );

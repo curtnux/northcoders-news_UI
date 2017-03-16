@@ -11,11 +11,17 @@ const ArticleCard = function (props) {
         <div className='media-content'>
           <div className='content'>
             <h3 className='title is-3'>{props.title}</h3>
+            <span>
+              <small>Created by: {props.author}</small> <small>Topic: {props.topic}</small>
+            </span>
+            <p>
+              <strong>{props.comments} comments</strong>
+            </p>
           </div>
         </div>
       </article>
     </div>
-  )
-}
+  );
+};
 
 export default ArticleCard;
