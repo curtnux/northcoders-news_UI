@@ -12,7 +12,7 @@ const ArticleCard = function (props) {
           <div className='content'>
             <h3 className='title is-3'>{props.title}</h3>
             <span>
-              <small>Created by: {props.author}</small> <small>Topic: {props.topic}</small>
+              <small>Created by: {props.created_by}</small> <small>Topic: {props.belongs_to}</small>
             </span>
             <p>
               <strong>{props.comments} comments</strong>
@@ -22,6 +22,14 @@ const ArticleCard = function (props) {
       </article>
     </div>
   );
+};
+
+ArticleCard.propTypes = {
+  votes: React.PropTypes.number.isRequired,
+  title: React.PropTypes.string.isRequired,
+  created_by: React.PropTypes.string.isRequired,
+  belongs_to: React.PropTypes.string.isRequired,
+  comments: React.PropTypes.number.isRequired
 };
 
 export default ArticleCard;

@@ -9,17 +9,12 @@ const ArticleList = React.createClass({
     this.props.fetchArticles();
   },
   render () {
+    if (this.props.loading) return <p>'Loading..'</p>;
+
     return (
       <div id='ArticleList'>
-        {this.props.articles.map(function (article, i) {
-          return <ArticleCard 
-          title={article.title} 
-          votes={article.votes} 
-          key={i} 
-          comments={article.comments} 
-          topic={article.belongs_to}
-          author={article.created_by}
-          />
+        {this.props.articles.data.map(function (article, i) {
+          return <ArticleCard key={i} {...article} />;
         })}
       </div>
     );
@@ -28,7 +23,9 @@ const ArticleList = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: state.articles
+    articles: state.articles,
+    loading: state.articles.loading,
+    error: state.articles.error
   };
 }
 
