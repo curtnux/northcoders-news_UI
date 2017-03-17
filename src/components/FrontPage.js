@@ -22,7 +22,7 @@ const FrontPage = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: getTopArticles(state, 3),
+    articles: getTopArticles(state, 10),
     loading: state.articles.loading,
     error: state.articles.error
   };

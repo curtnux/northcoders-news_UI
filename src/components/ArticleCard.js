@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const ArticleCard = function (props) {
   return (
@@ -10,7 +11,7 @@ const ArticleCard = function (props) {
         </div>
         <div className='media-content'>
           <div className='content'>
-            <h3 className='title is-3'>{props.title}</h3>
+            <Link to="`/${topic}/${id}`"><h3 className='title is-3'>{props.title}</h3></Link>
             <span>
               <small>Created by: {props.created_by}</small> <small>Topic: {props.belongs_to}</small>
             </span>

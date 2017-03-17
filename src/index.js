@@ -20,6 +20,7 @@ ReactDOM.render(<Provider store={store}>
                     <Route path='/' component={App}>
                       <IndexRoute component={FrontPage}/>
                       <Route path='/:topic' component={TopicPage} />
+                      <Route path='/:topic/:id' component={TopicPage} />
                     </Route>
                   </Router>
                 </Provider>, document.getElementById('app'));
