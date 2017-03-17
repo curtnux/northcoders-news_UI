@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import {getTopArticles} from '../reducer/articles.reducer';
+import {fetchArticlesByTopic} from '../reducer/articles.reducer';
 
 import ArticleList from './ArticleList';
 
-const FrontPage = React.createClass({
+const TopicPage = React.createClass({
   componentWillMount () {
-    this.props.fetchArticles();
+    this.props.fetchArticlesByTopic();
   },
   render () {
     if (this.props.loading) return <p>'Loading..'</p>;
 
     return (
-      <div id='FrontPage'>
+      <div id='TopicPage'>
         <ArticleList articles={this.props.articles} />
       </div>
     );
@@ -22,7 +22,7 @@ const FrontPage = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: getTopArticles(state, 3),
+    articles: fetchArticlesByTopic(state, 'football'),
     loading: state.articles.loading,
     error: state.articles.error
   };
@@ -36,4 +36,4 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FrontPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TopicPage);

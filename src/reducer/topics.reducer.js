@@ -15,7 +15,7 @@ export function topicsReducer (prevState = initialState, action) {
       return newState;
 
     case types.FETCH_TOPICS_SUCCESS:
-      newState.data = Object.assign({}, newState.data, action.data);
+      newState.data = Object.assign({}, newState.data, action.data); 
       newState.loading = false;
       return newState;
 
@@ -28,5 +28,7 @@ export function topicsReducer (prevState = initialState, action) {
       return prevState;
   }
 }
+
+
 
 

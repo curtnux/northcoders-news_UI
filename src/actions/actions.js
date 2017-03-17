@@ -30,51 +30,70 @@ export function fetchArticlesSuccess (articles) {
   };
 }
 
-export function fetchArticlesError (err) {
+export function fetchArticlesError (error) {
   return {
     type: types.FETCH_ARTICLES_ERROR,
-    err: err
+    error
   };
 }
 
-export function fetchArticlesType (type) {
-  return {
-    type: types.FETCH_ARTICLES_TYPE,
-    data: type
-  };
-}
-
-
-export function fetchTopics () {
+export function fetchArticlesByTopic (topic) {
   return (dispatch) => {
-    dispatch(fetchTopicsRequest());
+    dispatch(fetchArticlesByTopicRequest());
     axios
-      .get(`${ROOT}/topics`)
+      .get(`${ROOT}/topics/${topic}/articles`)
       .then(res => {
-        dispatch(fetchTopicsSuccess(res.data.topics));
+        dispatch(fetchArticlesByTopicSuccess(res.data.articles));
       })
       .catch(err => {
-         dispatch(fetchTopicsError(err.message));
+         dispatch(fetchArticlesByTopicError(err.message));
       });
   };
 }
 
-export function fetchTopicsRequest () {
+export function fetchArticlesByTopicRequest () {
   return {
     type: types.FETCH_TOPICS_REQUEST
   };
 }
 
-export function fetchTopicsSuccess (topics) {
+export function fetchArticlesByTopicSuccess (data) {
   return {
     type: types.FETCH_TOPICS_SUCCESS,
-    data: topics
+    data
   };
 }
 
-export function fetchTopicsError (err) {
+export function fetchArticlesByTopicError (err) {
   return {
     type: types.FETCH_TOPICS_ERROR,
-    err: err
+    err
   };
+}
+
+export function voteArticle (id, vote) {
+  return function (dispatch) {
+    dispatch(voteArticleRequest());
+    axios.put(`${ROOT}/articles/${id}?vote={vote}`)
+      .then(res => {
+        dispatch(voteArticleSucces(res.data));
+      })
+      .catch(error => {
+        dispatch(voteArticleError(error.message));
+      });
+  };
+}
+
+export function voteArticleRequest () {
+  return {type: types.VOTE_ARTICLE_REQUEST};
+}
+
+export function voteArticleSucces (data) {
+  return {type: types.VOTE_ARTICLE_SUCCESS},
+        data;
+}
+
+export function voteArticleError (error) {
+  return {type: types.VOTE_ARTICLE_ERROR},
+          error;
 }

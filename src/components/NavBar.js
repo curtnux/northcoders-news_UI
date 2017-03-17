@@ -11,14 +11,16 @@ const NavBar = React.createClass({
     render () {
         return (
             <nav>
-            <Link className="button" onClick={(e) => this.generateArticles(e)} to="/topics/football/articles">Football</Link>
-            <Link className="button" onClick={(e) => this.generateArticles(e)} to="/topics/cooking/articles">Cooking</Link>
-            <Link className="button" onClick={(e) => this.generateArticles(e)} to="/topics/coding/articles">Coding</Link>   
+            <Link className="button" onClick={e => this.generateArticles(e)} to="/topics/football/articles">Football</Link>
+            <Link className="button" onClick={e => this.generateArticles(e)} to="/topics/cooking/articles">Cooking</Link>
+            <Link className="button" onClick={e => this.generateArticles(e)} to="/topics/coding/articles">Coding</Link>   
                 NorthCodersNews
             </nav>
         );
     },
     generateArticles (e) { // this is where we need to create an action to be able to call this this function will be on the reducer
+        event.preventDefault();
+        //dispatch
         this.props.articles.data.filter(function (article, i) {
           if (article.belongs_to === e)
           return article.belongs_to;

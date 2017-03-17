@@ -10,8 +10,7 @@ import './css/font-awesome.css';
 
 import App from './components/App';
 import FrontPage from './components/FrontPage';
-import NavBar from './components/NavBar';
-import ArticleList from './components/ArticleList';
+import TopicPage from './components/TopicPage';
 import reducer from './reducer/index.reducer';
 
 const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
@@ -19,9 +18,8 @@ const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
 ReactDOM.render(<Provider store={store}>
                   <Router history={browserHistory}>
                     <Route path='/' component={App}>
-                      <IndexRoute component={ArticleList}/>
-                      <Route path='/articles' component={ArticleList} />
-                      <Route path='/topics/:topic/articles' component={ArticleList} />
+                      <IndexRoute component={FrontPage}/>
+                      <Route path='/:topic' component={TopicPage} />
                     </Route>
                   </Router>
                 </Provider>, document.getElementById('app'));
