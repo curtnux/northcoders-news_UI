@@ -53,20 +53,20 @@ export function fetchArticlesByTopic (topic) {
 
 export function fetchArticlesByTopicRequest () {
   return {
-    type: types.FETCH_TOPICS_REQUEST
+    type: types.FETCH_ARTICLES_BY_TOPIC_REQUEST
   };
 }
 
 export function fetchArticlesByTopicSuccess (data) {
   return {
-    type: types.FETCH_TOPICS_SUCCESS,
+    type: types.FETCH_ARTICLES_BY_TOPIC_SUCCESS,
     data
   };
 }
 
 export function fetchArticlesByTopicError (err) {
   return {
-    type: types.FETCH_TOPICS_ERROR,
+    type: types.FETCH_ARTICLES_BY_TOPIC_ERROR,
     err
   };
 }

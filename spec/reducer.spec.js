@@ -11,7 +11,6 @@ describe('reducer', () => {
             }
         }
     };
-
     it('exists', () => {
         expect(fetchArticlesByTopic).to.be.a.function;
     });

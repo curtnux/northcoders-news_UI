@@ -60,9 +60,9 @@ export function getTopArticles (state, num) {
   }).slice(0, num); 
 }
 
-export function fetchArticlesByTopic (state, belong) {
-  return Object.keys(state.articles.byId).reduce(function (acc, id) {
-    return acc.concat(state.articles.byId[id]);
+export function fetchArticlesByTopic (articles, belong) {
+  return Object.keys(articles).reduce(function (acc, id) {
+    return acc.concat(articles[id]);
   }, []).filter(function (topic) {
     return topic.belongs_to === belong;
   });

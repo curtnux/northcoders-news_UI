@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import {fetchArticlesByTopic} from '../reducer/articles.reducer';
+import { getTopArticles } from '../reducer/articles.reducer';
 
 import ArticleList from './ArticleList';
 
 const TopicPage = React.createClass({
   componentWillMount () {
-    this.props.fetchArticlesByTopic();
+    this.props.fetchArticlesByTopic(this.props.params.topic);
   },
   render () {
     if (this.props.loading) return <p>'Loading..'</p>;
-
+    console.log(this.props.articles);
     return (
       <div id='TopicPage'>
         <ArticleList articles={this.props.articles} />
@@ -22,7 +22,7 @@ const TopicPage = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: fetchArticlesByTopic(state, 'football'),
+    articles: getTopArticles(state, 10),
     loading: state.articles.loading,
     error: state.articles.error
   };
@@ -30,8 +30,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchArticles: () => {
-      dispatch(actions.fetchArticles());
+    fetchArticlesByTopic: (topic) => {
+      dispatch(actions.fetchArticlesByTopic(topic));
     }
   };
 }
