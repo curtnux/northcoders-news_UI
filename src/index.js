@@ -9,6 +9,7 @@ import './css/bulma.css';
 import './css/font-awesome.css';
 
 import App from './components/App';
+import FrontPage from './components/FrontPage';
 import NavBar from './components/NavBar';
 import ArticleList from './components/ArticleList';
 import reducer from './reducer/index.reducer';

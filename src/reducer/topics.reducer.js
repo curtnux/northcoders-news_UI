@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 const initialState = {
-  data: [],
+  data: {},
   loading: false,
   error: null
 };
@@ -9,20 +9,24 @@ const initialState = {
 export function topicsReducer (prevState = initialState, action) {
   const newState = Object.assign({}, prevState);
 
-  if (action.type === types.FETCH_TOPICS_REQUEST) {
-    newState.loading = true;
-  }
+  switch (action.type) {
+    case types.FETCH_TOPICS_REQUEST:
+      newState.loading = true;
+      return newState;
 
-  if (action.type === types.FETCH_TOPICS_SUCCESS) {
-    newState.data = action.data;
-    newState.loading = false;
-  }
+    case types.FETCH_TOPICS_SUCCESS:
+      newState.data = Object.assign({}, newState.data, action.data);
+      newState.loading = false;
+      return newState;
 
-  if (action.type === types.FETCH_TOPICS_ERROR) {
-    newState.error = action.data;
-    newState.loading = false;
-  }
+    case types.FETCH_TOPICS_ERROR:
+      newState.error = action.data;
+      newState.loading = false;
+      return newState;
 
-  return newState;
+    default:
+      return prevState;
+  }
 }
+
 

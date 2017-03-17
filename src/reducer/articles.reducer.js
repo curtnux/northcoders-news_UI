@@ -1,7 +1,8 @@
 import * as types from '../actions/types';
+import { map } from 'underscore';
 
 const initialState = {
-  data: [],
+  data: {},
   loading: false,
   error: null
 };
@@ -22,19 +23,34 @@ const initialState = {
 export function articlesReducer (prevState = initialState, action) {
   const newState = Object.assign({}, prevState);
 
-  if (action.type === types.FETCH_ARTICLES_REQUEST) {
-    newState.loading = true;
-  }
+  switch (action.type) {
+    case types.FETCH_ARTICLES_REQUEST:
+      newState.loading = true;
+      return newState;
+    
+    case types.FETCH_ARTICLES_SUCCESS:
+      newState.data = Object.assign({}, newState.data, action.data);
+      newState.loading = false; 
+      return newState;
+    
+    case types.FETCH_ARTICLES_ERROR:
+      newState.error = action.data;
+      newState.loading = false;
+      return newState;
+    
+    // case types.FETCH_ARTICLES_TYPE:
+    //   newState.data = Object.assign({}, newState.data, action.data);
 
-  if (action.type === types.FETCH_ARTICLES_SUCCESS) {
-    newState.data = action.data;
-    newState.loading = false;
-  }
+    //   var { data } = newState;
 
-  if (action.type === types.FETCH_ARTICLES_ERROR) {
-    newState.error = action.data;
-    newState.loading = false;
-  }
+    //   reduce(newState.data, function (topic, i) {
+    //     if (topic[i].belongs_to.hasOwnProperty(action.type)) {
+          
+    //   }
+        
+    //   }
 
-  return newState;
+    default:
+      return prevState;
+  }
 }

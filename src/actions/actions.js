@@ -37,6 +37,13 @@ export function fetchArticlesError (err) {
   };
 }
 
+export function fetchArticlesType (type) {
+  return {
+    type: types.FETCH_ARTICLES_TYPE,
+    data: type
+  };
+}
+
 
 export function fetchTopics () {
   return (dispatch) => {

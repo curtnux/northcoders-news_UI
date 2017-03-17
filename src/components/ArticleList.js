@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
+import { map } from 'underscore';
 
 import ArticleCard from './ArticleCard';
 
@@ -13,7 +14,7 @@ const ArticleList = React.createClass({
 
     return (
       <div id='ArticleList'>
-        {this.props.articles.data.map(function (article, i) {
+        {map(this.props.articles.data, function (article, i) {
           return <ArticleCard key={i} {...article} />;
         })}
       </div>
