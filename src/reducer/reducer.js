@@ -1,15 +1,10 @@
-import * as types from '../actions/types';
+import {combineReducers} from 'redux';
+import articlesReducer from './articles.reducer';
+import commentsReducer from './comments.reducer';
+import usersReducer from './users.reducer';
 
-const initialState = {
-  articles: [],
-  selectedTopic: null
-};
-
-function reducer (prevState = initialState, action) {
-  const newState = Object.assign({}, prevState);
-
-
-  return newState;
-}
-
-export default reducer;
+export default combineReducers ({
+        articles: articlesReducer,
+        comments: commentsReducer,
+        users: usersReducer
+});
