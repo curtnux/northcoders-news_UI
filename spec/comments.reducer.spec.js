@@ -1,12 +1,30 @@
 import { expect } from 'chai';
 import commentsReducer from '../src/reducer/comments.reducer';
-import * as actions from '../src/actions/actions';
+import { voteCommentRequest, voteCommentSuccess, voteCommentError, postCommentRequest, postCommentSuccess, 
+postCommentError, deleteCommentRequest, deleteCommentSuccess, deleteCommentError} from '../src/actions/actions';
 
 describe('commentsReducer', () => {
     it('exists', () => {
         expect(commentsReducer).to.be.a.function;
     });
-    it('handles vote comments success', () => {
+    
+    it('handles vote comment requests', () => {
+        const initialState = {
+            loading: false,
+            error: null
+        };
+        const expected = {
+            loading: true,
+            error: null
+        };
+
+        const action = voteCommentRequest();
+        const actual = commentsReducer(initialState, action);
+
+        expect(actual).to.eql(expected);
+    });
+
+    it('handles a vote comment success', () => {
         const initialState = {
             byId: {
                 1: { _id: 1, votes: 10}
@@ -21,14 +39,43 @@ describe('commentsReducer', () => {
             loading: false
         };
 
-        const action = actions.voteCommentSuccess(1, 'up');
+        const action = voteCommentSuccess(1, 'up');
         const actual = commentsReducer(initialState, action);
         expect(actual).to.eql(expected);
         expect(actual).to.not.equal(initialState);
     });
 
-    it('handles post comments', () => {
-        const action = actions.postCommentSuccess({_id: 2, comment: '2nd Comment'});
+    it('handles vote comment errors', () => {
+        const initialState = {
+            loading: false,
+            error: null
+        };
+        const expected = {
+            loading: false,
+            error: 'error message'
+        };
+        const action = voteCommentError('error message');
+        const actual = commentsReducer(initialState, action);
+
+        expect(actual).to.eql(expected);
+    });
+
+    it('handles post comment requests', () => {
+        const initialState = {
+            loading: false,
+            error: null
+        };
+        const expected = {
+            loading: true, 
+            error: null
+        };
+        const action = postCommentRequest();
+        const actual = commentsReducer(initialState, action);
+
+        expect(actual).to.eql(expected);
+    });
+
+    it('handles a post comment success', () => {
         const initialState = {
             loading: true,
             error: null,
@@ -37,6 +84,7 @@ describe('commentsReducer', () => {
             }
         };
     
+        const action = postCommentSuccess({_id: 2, comment: '2nd Comment'});
         const actual = commentsReducer(initialState, action);
         const expected = {
             loading: false,
@@ -50,9 +98,38 @@ describe('commentsReducer', () => {
         expect(actual).to.eql(expected);
         expect(actual).to.not.equal(initialState);
     });
+
+    it('handles post comment errors', () => {
+        const initialState = {
+            error: null,
+            loading: true
+        };
+        const expected = {
+            error: 'error message',
+            loading: false
+        };
+        const action = postCommentError('error message');
+        const actual = commentsReducer(initialState, action);
+
+        expect(actual).to.eql(expected);
+    });
+
+    it('handles delete comment requests', () => {
+        const initialState = {
+            loading: false,
+            error: null
+        };
+        const expected = {
+            loading: true, 
+            error: null
+        };
+        const action = deleteCommentRequest();
+        const actual = commentsReducer(initialState, action);
+
+        expect(actual).to.eql(expected);        
+    });
     
-    it('handles deleting comments', () => {
-        const action = actions.deleteCommentSuccess(1);
+    it('handles a delete comments success', () => {
         const initialState = {
             loading: true,
             byId: {
@@ -60,11 +137,27 @@ describe('commentsReducer', () => {
             }
         };
 
+        const action = deleteCommentSuccess(1);
         const actual = commentsReducer(initialState, action);
         const expected = {
             loading: false,
             byId: {}
         };
         expect(actual).to.eql(expected);
+    });
+
+    it('handles delete comment errors', () => {
+        const initialState = {
+            error: null,
+            loading: true
+        };
+        const expected = {
+            error: 'error message',
+            loading: false
+        };
+        const action = deleteCommentError('error message');
+        const actual = commentsReducer(initialState, action);
+
+        expect(actual).to.eql(expected);        
     });
 });

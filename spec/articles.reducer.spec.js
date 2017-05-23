@@ -14,7 +14,24 @@ describe('articlesReducer', () => {
         expect(articlesReducer).to.be.a.function;
     });
 
-    it('handles fetch all articles requests', function () {
+    it('handles fetch all article requests', () => {
+      const initialState = {
+        loading: false,
+        error: null
+      };
+
+      const expected = {
+        loading: true, 
+        error: null
+      };
+
+      const input = articlesReducer(initialState, actions.fetchAllArticlesRequest());
+
+      expect(input).to.eql(expected);
+      expect(input).to.not.equal(initialState);
+    });
+
+    it('handles a fetch all articles success', function () {
       const articles = [{_id: 1, belongs_to: 'football'}];
 
       const newState = {
@@ -31,7 +48,39 @@ describe('articlesReducer', () => {
       expect(input).to.not.equal(initialState);
     });
 
-    it('handles fetch Topic Articles', function () {
+    it('handles fetch all article errors', () => {
+      const initialState = {
+        loading: true,
+        error: null
+      };
+      
+      const expected = {
+        loading: false, 
+        error: 'error message'
+      };
+
+      const input = articlesReducer(initialState, actions.fetchAllArticlesError('error message'));
+      expect(input).to.eql(expected);
+    });
+
+    it('handles fetch Topic Article requests', () => {
+      const initialState = {
+        loading: false,
+        error: null
+      };
+
+      const expected = {
+        loading: true, 
+        error: null
+      };
+
+      const input = articlesReducer(initialState, actions.fetchTopicArticlesRequest());
+
+      expect(input).to.eql(expected);
+      expect(input).to.not.equal(initialState);      
+    });
+
+    it('handles a fetch Topic Articles success', function () {
       const initialState = {
         byId: {
           1: { _id: 1, belongs_to: 'football'},
@@ -57,6 +106,36 @@ describe('articlesReducer', () => {
 
       expect(input).to.eql(newState);
       expect(initialState).to.not.eql(newState);
+    });
+
+    it('handles fetch Topic Article Errors', () => {
+      const initialState = {
+        loading: true,
+        error: null
+      };
+      
+      const expected = {
+        loading: false, 
+        error: 'error message'
+      };
+
+      const input = articlesReducer(initialState, actions.fetchTopicArticlesError('error message'));
+      expect(input).to.eql(expected);      
+    });
+
+    it('handles vote article requests', () => {
+      const initialState = {
+        loading: false,
+        error: null
+      };
+      
+      const expected = {
+        loading: true, 
+        error: null
+      };
+
+      const input = articlesReducer(initialState, actions.voteArticleRequest());
+      expect(input).to.eql(expected);
     });
 
     it('handles a vote article success', () => {
@@ -86,7 +165,19 @@ describe('articlesReducer', () => {
       expect(input).to.eql(newState);
       expect(initialState).to.not.eql(newState);
     });
+
+    it('handles vote article errors', () => {
+      const initialState = {
+        loading: true,
+        error: null
+      };
+      
+      const expected = {
+        loading: false, 
+        error: 'error message'
+      };
+
+      const input = articlesReducer(initialState, actions.voteArticleError('error message'));
+      expect(input).to.eql(expected);
+    });
 });
-
-
-
