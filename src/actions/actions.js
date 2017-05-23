@@ -112,19 +112,6 @@ export function fetchArticle (ID) {
 // *****************************************************
 
 // **************** VOTE ARTICLE **********************
-export function voteArticle (article_id, vote) {
-  return (dispatch) => {
-    dispatch(voteArticleRequest ());
-    axios
-      .put(`${ROOT}/articles/${article_id}?vote=${vote}`)
-      .then(res => {
-        dispatch(voteArticleSuccess(res.data));
-      })
-      .catch(error => {
-         dispatch(voteArticleError(error.message));
-      });
-  };
-}
 
 export function voteArticleSuccess (data) {
   return {
@@ -145,22 +132,23 @@ export function voteArticleRequest () {
     type: types.VOTE_ARTICLE_REQUEST
   };
 }
+
+export function voteArticle (article_id, vote) {
+  return (dispatch) => {
+    dispatch(voteArticleRequest ());
+    axios
+      .put(`${ROOT}/articles/${article_id}?vote=${vote}`)
+      .then(res => {
+        dispatch(voteArticleSuccess(res.data));
+      })
+      .catch(error => {
+         dispatch(voteArticleError(error.message));
+      });
+  };
+}
 // *****************************************************
 
 // ****************** Vote Comment *********************
-export function voteComment (comment_id, vote) {
-    return dispatch => {
-        dispatch(voteCommentRequest ());
-            axios
-                .put(`${ROOT}/comments/${comment_id}?vote=${vote}`)
-                .then(res => {
-                    dispatch(voteCommentSuccess(res.data.comment));
-                })
-                .catch(error => {
-                    dispatch(voteCommentError(error.message));
-                });
-    };
-}
 
 export function voteCommentRequest () {
     return {
@@ -182,25 +170,23 @@ export function voteCommentError (error) {
         error
     };
 }
-// *****************************************************
 
-// **************** POST COMMENT ***********************
-
-export function postComment (article_id, comment) {
-    return (dispatch) => {
-        dispatch(postCommentRequest());
+export function voteComment (comment_id, vote) {
+    return dispatch => {
+        dispatch(voteCommentRequest ());
             axios
-                .post(`${ROOT}/articles/${article_id}/comments`, { 
-                    comment: comment
-                })
+                .put(`${ROOT}/comments/${comment_id}?vote=${vote}`)
                 .then(res => {
-                    dispatch(postCommentSuccess(res.data.comment));
+                    dispatch(voteCommentSuccess(res.data.comment));
                 })
                 .catch(error => {
-                    dispatch(postCommentError(error.message));
+                    dispatch(voteCommentError(error.message));
                 });
     };
 }
+// *****************************************************
+
+// **************** POST COMMENT ***********************
 
 export function postCommentRequest () {
     return {
@@ -221,10 +207,25 @@ export function postCommentError (error) {
         error
     };
 }
+
+export function postComment (article_id, comment) {
+    return (dispatch) => {
+        dispatch(postCommentRequest());
+            axios
+                .post(`${ROOT}/articles/${article_id}/comments`, { 
+                    comment: comment
+                })
+                .then(res => {
+                    dispatch(postCommentSuccess(res.data.comment));
+                })
+                .catch(error => {
+                    dispatch(postCommentError(error.message));
+                });
+    };
+}
 // *****************************************************
 
 // *************** DELETE COMMENTS *********************
-
 export function deleteCommentRequest () {
     return {
         type: types.DELETE_COMMENT_REQUEST
@@ -258,23 +259,9 @@ export function deleteComment (comment_id) {
                 });
     };
 }
-
 // *****************************************************
 
 // ****************** USERS ****************************
-export function fetchUsers () {
-    return dispatch => {
-        dispatch(fetchUserRequest ());
-            axios
-                .get(`${ROOT}/users`)
-                .then(res => {
-                    dispatch(fetchUserSuccess (res.data.users));
-                })
-                .catch(error => {
-                    dispatch(fetchUserError (error));
-                });
-    };
-}
 
 export function fetchUserRequest () {
     return {
@@ -293,6 +280,20 @@ export function fetchUserError (error) {
     return {
         type: types.FETCH_USERS_ERROR,
         error
+    };
+}
+
+export function fetchUsers () {
+    return dispatch => {
+        dispatch(fetchUserRequest ());
+            axios
+                .get(`${ROOT}/users`)
+                .then(res => {
+                    dispatch(fetchUserSuccess (res.data.users));
+                })
+                .catch(error => {
+                    dispatch(fetchUserError (error));
+                });
     };
 }
 // *****************************************************
