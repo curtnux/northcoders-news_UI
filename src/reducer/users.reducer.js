@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import { normaliseData } from '../helper';
 
 const initialState = {
   users: {},
@@ -15,7 +16,7 @@ export default function (prevState = initialState, action) {
     case types.FETCH_USERS_SUCCESS:
        return Object.assign({}, prevState, {
           loading: false,
-          users: action.data
+          users: normaliseData(action.data)
        });
     case types.FETCH_USERS_ERROR:
       return Object.assign({}, prevState, {

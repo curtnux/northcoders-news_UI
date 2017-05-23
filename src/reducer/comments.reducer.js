@@ -59,6 +59,7 @@ export default function (prevState = initialState, action) {
         }
 
         case types.FETCH_ARTICLE_ERROR:
+        case types.POST_COMMENT_ERROR:
         case types.VOTE_COMMENT_ERROR:
         case types.DELETE_COMMENT_ERROR:
             return Object.assign({}, prevState, {

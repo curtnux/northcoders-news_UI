@@ -39,7 +39,8 @@ export default function (prevState = initialState, action) {
         case types.FETCH_TOPIC_ARTICLES_ERROR:
         case types.VOTE_ARTICLE_ERROR:
             return Object.assign({}, prevState, {
-                error: action.data
+                error: action.error,
+                loading: false
             });
 
         default:
