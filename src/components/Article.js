@@ -1,6 +1,5 @@
 import React from 'react';
 
-import NavLink from './NavLink';
 import Votes from './Votes';
 
 const Article = (props) => {
@@ -8,13 +7,16 @@ const Article = (props) => {
         <div className='box'>
             <article className='media'>
                 <div className='level'>
-                    <Votes votes={props.article.votes} id={props.article._id} voteArticle={props.voteArticle} />
+                    <Votes votes={props.article.votes} 
+                           id={props.article._id} 
+                           voteArticle={props.voteArticle} 
+                    />
                         <div className='media-content'>
                             <div className='content'>
                                 <b className='title is-3'>{props.article.title}</b>
-                                    <div>submitted by: <NavLink >{props.article.created_by} </NavLink></div>
-                                        <div><b>{props.article.comments} comments</b></div>
-                                    <p>{props.article.body}</p>
+                                    <div>submitted by: <strong>{props.article.created_by}</strong></div>
+                                        <div><b>{props.article.comment_count} comments</b></div>
+                                    <p className='message-body'>{props.article.body}</p>
                             </div>
                         </div>
                 </div>
@@ -23,10 +25,9 @@ const Article = (props) => {
     );
 };
 
-//TODO: style above component and add proptypes
-
 Article.propTypes = {
-    article: React.PropTypes.object.isRequired
+    article: React.PropTypes.object.isRequired,
+    voteArticle: React.PropTypes.func.isRequired
 };
 
 export default Article;

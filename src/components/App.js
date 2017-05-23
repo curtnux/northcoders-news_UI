@@ -1,16 +1,16 @@
 import React from 'react';
 
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 class App extends React.Component {
   
   render () {
     return (
       <div className='container is-fluid'>
-        <h3 className='title is-3'>Northcoders News</h3>
         <NavBar />
         {this.props.children}
-        <footer className='footer'>FOOTER HERE</footer>
+        <Footer />
       </div>
     );
   }

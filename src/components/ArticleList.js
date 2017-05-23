@@ -5,6 +5,7 @@ const ArticleList = (props) => {
   return (
     <div id='ArticleList'>
       {props.articles.map(function (article, i) {
+        
         return <ArticleCard 
           key={i}
           {...article}

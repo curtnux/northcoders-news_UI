@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
+import { fetchArticle, voteArticle, voteComment, postComment, deleteComment  } from '../actions/actions';
 
 import { getTopComments } from '../helper';
 import Article from './Article';
@@ -23,17 +23,28 @@ class ArticlePage extends React.Component {
     }
 
     render () {
-        if (this.props.loading) return <p className="fa fa-spinner fa-pulse fa-3x fa-fw"></p>;
+
+        if (this.props.loading) return (
+            <div className='spinner'>
+                <p className="fa fa-spinner fa-pulse fa-3x fa-fw"></p>;
+            </div>
+        );
 
         return (
             <div>
-            <Article article={this.props.article} voteArticle={this.props.voteArticle}  />
+            <Article 
+                article={this.props.article} 
+                voteArticle={this.props.voteArticle}  
+            />
             <CommentForm 
                 inputHandler={this.inputHandler}
                 submitHandler={this.submitHandler}
                 input={this.state.input}
             />
-            {this.getComments()}
+            <div className='box'>
+                <h1 className='title is-4'>Comments</h1>
+                {this.getComments()}
+            </div>
             </div>
         );
     }
@@ -42,12 +53,13 @@ class ArticlePage extends React.Component {
         return (
             Object.keys(this.props.comments).map((comments, i) => {
                 const comment = this.props.comments[comments];
+                
                 return (
                     <Comments 
-                    key={i}
-                    {...comment}
-                    voteComment={this.props.voteComment}
-                    deleteComment={this.props.deleteComment}
+                        key={i}
+                        {...comment}
+                        voteComment={this.props.voteComment}
+                        deleteComment={this.props.deleteComment}
                     />
                 );
             })
@@ -55,7 +67,7 @@ class ArticlePage extends React.Component {
     }
 
     inputHandler (event) {
-        this.setState({
+        this.setState ({
             input: event.target.value
         });
     }
@@ -63,7 +75,7 @@ class ArticlePage extends React.Component {
     submitHandler (event) {
         event.preventDefault();
         this.props.postComment(this.props.params.article_id, this.state.input);
-        this.setState({input: ''});
+        this.setState({ input: '' });
     }
 }
 
@@ -75,7 +87,8 @@ ArticlePage.propTypes = {
     article: React.PropTypes.object.isRequired,
     postComment: React.PropTypes.func.isRequired,
     voteComment: React.PropTypes.func.isRequired,
-    voteArticle: React.PropTypes.func.isRequired
+    voteArticle: React.PropTypes.func.isRequired, 
+    deleteComment: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps (state, props) {
@@ -90,19 +103,19 @@ function mapStateToProps (state, props) {
 function mapDispatchToProps (dispatch) {
     return {
         fetchArticleByID: (id) => {
-            dispatch(actions.fetchArticle(id));
+            dispatch(fetchArticle(id));
         },
         voteArticle: (id, vote) => {
-            dispatch(actions.voteArticle(id, vote));
+            dispatch(voteArticle(id, vote));
         },
         voteComment: (id, vote) => {
-            dispatch(actions.voteComment(id, vote));
+            dispatch(voteComment(id, vote));
         },
         postComment: (id, comment) => {
-            dispatch(actions.postComment(id, comment));
+            dispatch(postComment(id, comment));
         },
         deleteComment: (comment_id) => {
-            dispatch(actions.deleteComment(comment_id));
+            dispatch(deleteComment(comment_id));
         }
     };
 }

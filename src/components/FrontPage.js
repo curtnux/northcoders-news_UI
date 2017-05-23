@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions/actions';
+import { fetchArticles, fetchUsers, fetchTopicArticles, voteArticle} from '../actions/actions';
 import { getTopArticles, getTopic } from '../helper';
 import ArticleList from './ArticleList';
 
@@ -19,11 +19,18 @@ class FrontPage extends React.Component {
     }
 
     render () {
-        if (this.props.loading) return <p className="fa fa-spinner fa-pulse fa-3x fa-fw"></p>;
+        if (this.props.loading) return (
+            <div className='spinner'>
+                <i className="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+            </div>
+        );
 
         return (
-            <div id='FrontPage'>
-                <ArticleList articles={this.props.articles} voteArticle={this.props.voteArticle} />
+            <div>
+                <ArticleList 
+                    articles={this.props.articles} 
+                    voteArticle={this.props.voteArticle} 
+                />
             </div>
         );
     }
@@ -46,7 +53,8 @@ FrontPage.propTypes = {
     params: React.PropTypes.object.isRequired,
     fetchAllArticles: React.PropTypes.func.isRequired,
     fetchTopicArticles: React.PropTypes.func.isRequired,
-    voteArticle: React.PropTypes.func.isRequired
+    voteArticle: React.PropTypes.func.isRequired,
+    fetchUsers: React.PropTypes.func.isRequired
 };
 
 
@@ -62,16 +70,16 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
     return {
         fetchAllArticles: () => {
-            dispatch(actions.fetchArticles());
+            dispatch(fetchArticles());
         },
         fetchTopicArticles: (topic) => {
-            dispatch(actions.fetchTopicArticles(topic));
+            dispatch(fetchTopicArticles(topic));
         },
         voteArticle: (id, vote) => {
-            dispatch(actions.voteArticle(id, vote));
+            dispatch(voteArticle(id, vote));
         },
         fetchUsers: () => {
-            dispatch(actions.fetchUsers());
+            dispatch(fetchUsers());
         }
     };
 }

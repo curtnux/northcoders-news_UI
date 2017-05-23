@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions/actions';
+import { fetchTopicArticles } from '../actions/actions';
 import NavLink from './NavLink';
 
-const NavBar = () => { //TODO: MAP through topics to create a DRY component
+const NavBar = () => {
     return (
-        <section className='hero is-primary'>
+        <section className='hero is-info is-bold'>
             <div className='hero-body'>
                 <div className='container'>
-                    <h1 className='title'>Northcoders News</h1>
-        <nav className='nav-menu nav-left'>
-            <NavLink className="nav-item is-tab is-hidden-mobile" to="/articles">All Articles</NavLink> 
-            <NavLink className="nav-item is-tab is-hidden-mobile" to="/football">Football</NavLink>
-            <NavLink className="nav-item is-tab is-hidden-mobile" to="/coding">Coding</NavLink>
-            <NavLink className="nav-item is-tab is-hidden-mobile" to="/cooking">Cooking</NavLink>
-        </nav>
+                    <b><h1 className='title is-1'>Northcoders News</h1></b>
+                        <nav className='nav-menu nav-left'>
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/articles">All Articles</NavLink> 
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/football">Football</NavLink>
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/coding">Coding</NavLink>
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/cooking">Cooking</NavLink>
+                        </nav>
                 </div>
             </div>
         </section>
@@ -30,7 +30,7 @@ function mapStateToProps () {
 function mapDispatchToProps (dispatch) {
     return {
         fetchTopicArticles: (topic) => {
-            dispatch(actions.fetchTopicArticles(topic));
+            dispatch(fetchTopicArticles(topic));
         }
     };
 }
