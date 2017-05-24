@@ -26,7 +26,7 @@ const Comments = (props) => {
                                 <strong className='title is-4'>{props.created_by}</strong>
                             </div>
                             <p className='subtitle is-5'>Posted on {getDate(props.created_at)}</p>
-                            <p className='message-body is-info'>{props.body}</p>
+                            <p className='message-body'>{props.body}</p>
                         </div>
                     </div>
                     <a><i 

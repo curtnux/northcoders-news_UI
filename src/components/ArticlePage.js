@@ -34,7 +34,7 @@ class ArticlePage extends React.Component {
             <div>
             <Article 
                 article={this.props.article} 
-                voteArticle={this.props.voteArticle}  
+                voteArticle={this.props.voteArticle.bind(null, this.props.article._id)}  
             />
             <CommentForm 
                 inputHandler={this.inputHandler}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchArticles, fetchUsers, fetchTopicArticles, voteArticle} from '../actions/actions';
+import { fetchArticles, fetchTopicArticles, voteArticle} from '../actions/actions';
 import { getTopArticles, getTopic } from '../helper';
 import ArticleList from './ArticleList';
 
@@ -9,7 +9,6 @@ class FrontPage extends React.Component {
 
     componentDidMount () {
         this.fetchData.bind(this)(this.props.params.topic);
-        this.props.fetchUsers();
     }
 
     componentWillReceiveProps (nextProps) {
@@ -53,8 +52,7 @@ FrontPage.propTypes = {
     params: React.PropTypes.object.isRequired,
     fetchAllArticles: React.PropTypes.func.isRequired,
     fetchTopicArticles: React.PropTypes.func.isRequired,
-    voteArticle: React.PropTypes.func.isRequired,
-    fetchUsers: React.PropTypes.func.isRequired
+    voteArticle: React.PropTypes.func.isRequired
 };
 
 
@@ -77,9 +75,6 @@ function mapDispatchToProps (dispatch) {
         },
         voteArticle: (id, vote) => {
             dispatch(voteArticle(id, vote));
-        },
-        fetchUsers: () => {
-            dispatch(fetchUsers());
         }
     };
 }

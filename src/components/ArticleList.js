@@ -9,7 +9,7 @@ const ArticleList = (props) => {
         return <ArticleCard 
           key={i}
           {...article}
-          voteArticle={props.voteArticle}
+          voteArticle={props.voteArticle.bind(null, article._id)}
           />;
       })}
     </div>

@@ -9,7 +9,7 @@ const ArticleCard = (props) => {
       <article className='media'>
 
       <div className='level'>
-      <Votes votes={props.votes} id={props._id} voteArticle={props.voteArticle} />
+      <Votes votes={props.votes} voteArticle={props.voteArticle} />
         <div className='media-content'>
           <div className='content'>
             <NavLink to={`/articles/${props._id}`}><h3 className='title is-3'>{props.title}</h3></NavLink>
