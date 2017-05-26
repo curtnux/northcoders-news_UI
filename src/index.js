@@ -14,7 +14,6 @@ import App from './components/App';
 import FrontPage from './components/FrontPage';
 import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
-import UserPage from './components/UserPage';
 
 const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
 
@@ -24,7 +23,6 @@ ReactDOM.render(<Provider store={store}>
                       <IndexRoute component={FrontPage}/>
                       <Route path=':topic' component={FrontPage} />
                       <Route path='articles/:article_id' component={ArticlePage} />
-                      <Route path='users/:username' component={UserPage} />
                       <Route path='*' component={NotFound} />
                     </Route>
                   </Router>
