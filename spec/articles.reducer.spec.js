@@ -149,7 +149,7 @@ describe('articlesReducer', () => {
         error: null
       };
 
-      const vote = {_id: 1, belongs_to: 'football', votes: 11};
+      const vote = {_id: 1, belongs_to: 'football', votes: 'up'};
 
       const newState = {
         byId: {
