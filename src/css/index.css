@@ -1,3 +1,52 @@
+*,
+*::before,
+*::after {box-sizing: border-box;}
+
 .spinner {
-    text-align: center
+    text-align: center;
+    color: tomato;
 }
+
+.hero-body {
+    background-image: url('../../public/headPage.jpg');
+    background-size: 89%;
+    background-position: right;
+}
+
+a, a:visited, i, h3.title.is-3:hover, .title.is-1 {
+    color: tomato
+}
+
+.content a:not(.button):visited, a.link, i:hover {
+    color: #4a4a4a;
+}
+
+.content a:not(.button):hover {
+    color: tomato;
+}
+
+.content a:not(.button) {
+    border: none;
+}
+
+.button:hover {
+    background-color: coral;
+}
+
+.nav-item.is-tab.is-hidden-mobile, .nav-item.is-tab.is-hidden-mobile {
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item a.is-tab.is-active, a.nav-item.is-tab.is-active {
+    border-bottom: 3px solid tomato;
+}
+
+.button, .delete:before, .delete:after {
+    background-color: tomato;
+}
+
+.nav-item.is-tab.is-hidden-mobile:hover, .nav-item.is-tab.is-hidden-mobile:active {
+    color:#00d1b2;
+    border-bottom: 3px solid tomato;
+}
+
