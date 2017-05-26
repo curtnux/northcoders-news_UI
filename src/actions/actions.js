@@ -113,10 +113,11 @@ export function fetchArticle (ID) {
 
 // **************** VOTE ARTICLE **********************
 
-export function voteArticleSuccess (data) {
+export function voteArticleSuccess (article_id, vote) {
   return {
     type: types.VOTE_ARTICLE_SUCCESS,
-    data
+    article_id,
+    vote
   };
 }
 
@@ -138,8 +139,8 @@ export function voteArticle (article_id, vote) {
     dispatch(voteArticleRequest ());
     axios
       .put(`${ROOT}/articles/${article_id}?vote=${vote}`)
-      .then(res => {
-        dispatch(voteArticleSuccess(res.data));
+      .then(() => {
+        dispatch(voteArticleSuccess(article_id, vote));
       })
       .catch(error => {
          dispatch(voteArticleError(error.message));
@@ -176,8 +177,8 @@ export function voteComment (comment_id, vote) {
         dispatch(voteCommentRequest ());
             axios
                 .put(`${ROOT}/comments/${comment_id}?vote=${vote}`)
-                .then(res => {
-                    dispatch(voteCommentSuccess(res.data.comment));
+                .then(() => {
+                    dispatch(voteCommentSuccess(comment_id, vote));
                 })
                 .catch(error => {
                     dispatch(voteCommentError(error.message));
