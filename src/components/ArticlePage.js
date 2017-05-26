@@ -6,6 +6,7 @@ import { getTopComments } from '../helper';
 import Article from './Article';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
+import Loading from './Loading';
 
 class ArticlePage extends React.Component {
     constructor (props) {
@@ -25,9 +26,7 @@ class ArticlePage extends React.Component {
     render () {
 
         if (this.props.loading) return (
-            <div className='spinner'>
-                <p className="fa fa-spinner fa-pulse fa-3x fa-fw"></p>;
-            </div>
+            <Loading />
         );
 
         return (

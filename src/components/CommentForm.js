@@ -10,13 +10,13 @@ const CommentForm = (props) => {
                     <p className='control'>
                     <textarea 
                         type="text" 
-                        className='textarea is-info' 
+                        className='textarea' 
                         placeholder='Add Comment...'
                         value={props.input}
                         onChange={props.inputHandler}
                     />
                     <input 
-                        className='button is-info' 
+                        className='button' 
                         type="submit" 
                         value='submit'
                     />

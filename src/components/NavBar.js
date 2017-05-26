@@ -6,7 +6,7 @@ import NavLink from './NavLink';
 
 const NavBar = () => {
     return (
-        <section className='hero is-info is-bold'>
+        <section className='hero is-bold'>
             <div className='hero-body'>
                 <div className='container'>
                     <b><h1 className='title is-1'>Northcoders News</h1></b>

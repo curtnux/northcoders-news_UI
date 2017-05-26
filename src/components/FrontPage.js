@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchArticles, fetchTopicArticles, voteArticle} from '../actions/actions';
 import { getTopArticles, getTopic } from '../helper';
 import ArticleList from './ArticleList';
+import Loading from './Loading';
 
 class FrontPage extends React.Component {
 
@@ -19,9 +20,7 @@ class FrontPage extends React.Component {
 
     render () {
         if (this.props.loading) return (
-            <div className='spinner'>
-                <i className="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-            </div>
+            <Loading />
         );
 
         return (
@@ -60,8 +59,7 @@ function mapStateToProps (state) {
     return {
         articles: getTopArticles(state, 10),
         loading: state.articles.loading,
-        error: state.articles.error,
-        users: state.users.users
+        error: state.articles.error
     };
 }
 
