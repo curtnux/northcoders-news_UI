@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchArticle, voteArticle, voteComment, postComment, deleteComment  } from '../actions/actions';
+import { fetchArticle, voteArticle, voteComment, postComment, deleteComment, fetchArticles } from '../actions/actions';
 
 import { getTopComments } from '../helper';
 import Article from './Article';
@@ -20,12 +20,15 @@ class ArticlePage extends React.Component {
     }
 
     componentDidMount () {
+        if (!this.props.article) {
+            this.props.fetchAllArticles();
+        }
         this.props.fetchArticleByID(this.props.params.article_id);
     }
 
     render () {
 
-        if (this.props.loading) return (
+        if (!this.props.article) return (
             <Loading />
         );
 
@@ -87,7 +90,8 @@ ArticlePage.propTypes = {
     postComment: React.PropTypes.func.isRequired,
     voteComment: React.PropTypes.func.isRequired,
     voteArticle: React.PropTypes.func.isRequired, 
-    deleteComment: React.PropTypes.func.isRequired
+    deleteComment: React.PropTypes.func.isRequired, 
+    fetchAllArticles: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps (state, props) {
@@ -115,7 +119,10 @@ function mapDispatchToProps (dispatch) {
         },
         deleteComment: (comment_id) => {
             dispatch(deleteComment(comment_id));
-        }
+        },
+        fetchAllArticles: () => {
+            dispatch(fetchArticles());
+        },
     };
 }
 

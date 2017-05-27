@@ -11,10 +11,10 @@ const NavBar = () => {
                 <div className='container'>
                     <b><h1 className='title is-1'>Northcoders News</h1></b>
                         <nav className='nav-menu nav-left'>
-                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/articles">All Articles</NavLink> 
-                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/football">Football</NavLink>
-                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/coding">Coding</NavLink>
-                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/cooking">Cooking</NavLink>
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/topics/articles">All Articles</NavLink> 
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/topics/football">Football</NavLink>
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/topics/coding">Coding</NavLink>
+                            <NavLink className="nav-item is-tab is-hidden-mobile" activeClassName="is-active" to="/topics/cooking">Cooking</NavLink>
                         </nav>
                 </div>
             </div>
