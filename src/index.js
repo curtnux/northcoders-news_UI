@@ -21,9 +21,9 @@ ReactDOM.render(<Provider store={store}>
                   <Router history={browserHistory}>
                     <Route path='/' component={App}>
                       <IndexRoute component={FrontPage}/>
-                      <Route path=':topic' component={FrontPage} />
+                      <Route path='topics/:topic' component={FrontPage} />
                       <Route path='articles/:article_id' component={ArticlePage} />
-                      <Route path='*' component={NotFound} />
                     </Route>
+                      <Route path='*' component={NotFound} />
                   </Router>
                 </Provider>, document.getElementById('app'));
