@@ -7,9 +7,10 @@
     "test": "mocha ./spec --compilers js:babel-core/register",
     "dev": "webpack-dev-server",
     "lint": "eslint ./",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "build": "webpack --config webpack.prod.config.js --progress --colors"
   },
-  "author": "",
+  "author": "Curtis Johnson",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.11.4",
