@@ -105,7 +105,7 @@ describe('articlesReducer', () => {
       const input = articlesReducer(initialState, actions.fetchTopicArticlesSuccess(topic));
 
       expect(input).to.eql(newState);
-      expect(initialState).to.not.eql(newState);
+      expect(initialState).to.not.equal(newState);
     });
 
     it('handles fetch Topic Article Errors', () => {
@@ -149,8 +149,6 @@ describe('articlesReducer', () => {
         error: null
       };
 
-      const vote = {_id: 1, belongs_to: 'football', votes: 'up'};
-
       const newState = {
         byId: {
           1: { _id: 1, belongs_to: 'football', votes: 11},
@@ -160,10 +158,10 @@ describe('articlesReducer', () => {
         error: null
       };
 
-      const input = articlesReducer(initialState, actions.voteArticleSuccess(vote));
-
+      const input = articlesReducer(initialState, actions.voteArticleSuccess(1, 'up'));
+      
       expect(input).to.eql(newState);
-      expect(initialState).to.not.eql(newState);
+      expect(initialState).to.not.equal(newState);
     });
 
     it('handles vote article errors', () => {

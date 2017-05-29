@@ -29,14 +29,14 @@ export default function (prevState = initialState, action) {
         case types.VOTE_ARTICLE_SUCCESS: {
         const newState = Object.assign({}, prevState);
         newState.byId = Object.assign({}, newState.byId);
-        
+             
         action.vote === 'up' 
         ? newState.byId[action.article_id].votes++ 
         : newState.byId[action.article_id].votes--;
         
         newState.loading = false;
         newState.error = null;
-        
+
         return newState;
         }
 
