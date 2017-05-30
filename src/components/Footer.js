@@ -9,7 +9,7 @@ const Footer = () => {
                         <strong>Northcoders News</strong> by Curtis Johnson.
                     </p>
                     <p>
-                        All source code for this project can be found <strong><a href="www.github.com/curtisjohnson1">here</a></strong>.
+                        All source code for this project can be found <strong><a href="https://github.com/curtisjohnson1/northcoders-news_UI">here</a></strong>.
                     </p>
                     <p>
                         <a href="https://github.com/curtisjohnson1">
